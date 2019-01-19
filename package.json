@@ -1,0 +1,22 @@
+{
+  "name": "graphql-server",
+  "version": "0.0.1",
+  "description": "graphql-server&&koa",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon",
+    "compile": "rm -rf build/* && tsc",
+    "build": "npm run compile"
+  },
+  "author": "liuxsen <948771968@qq.com> (http://github.com/liuxsen)",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.4"
+  }
+}
