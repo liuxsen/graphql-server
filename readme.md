@@ -13,7 +13,10 @@
 - [x] `findPoint` 启动项目 防止端口冲突
 - [x] 判断环境
 - [x] 接入 `graphql`
-- [ ] 使用 `.graphql` 文件 支持语法高亮
+- [x] 使用 `.graphql` 文件 支持语法高亮
+- [ ] 指令
+- [ ] 内联片段
+- [ ] 元字段
 - [ ] 接入 `mongodb`
 - [ ] 分页
 - [ ] `dataloader`
