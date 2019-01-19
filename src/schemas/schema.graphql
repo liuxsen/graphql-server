@@ -1,0 +1,23 @@
+# import User from "user_schema.graphql"
+
+type Query {
+  user(id: Int): User
+  users: [User]!
+}
+
+input UserInput {
+  name: String
+  age: Int
+}
+
+input UserupdateInput {
+  id: Int!
+  name: String
+  age: Int
+}
+
+type Mutation {
+  addUser(userInput: UserInput!): User
+  deleteUser(id: Int!): User
+  updateUser(updateUserInput: UserupdateInput!): User
+}
