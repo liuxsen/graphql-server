@@ -4,13 +4,16 @@
   "description": "graphql-server&&koa",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "cross-env NODE_ENV=development nodemon",
     "compile": "rm -rf build/* && tsc",
-    "build": "npm run compile"
+    "build": "npm run compile",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/main.js"
   },
   "author": "liuxsen <948771968@qq.com> (http://github.com/liuxsen)",
   "license": "MIT",
   "dependencies": {
+    "cross-env": "^5.2.0",
+    "find-free-port": "^2.0.0",
     "koa": "^2.6.2"
   },
   "devDependencies": {
