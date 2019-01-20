@@ -1,6 +1,6 @@
 {
   "ignore": [".git", "node_modules", "**/*.test.*", "**/*.spec.*"],
   "watch": ["src"],
-  "ext": "ts",
+  "ext": "ts,graphql",
   "exec": "ts-node ./src/main.ts"
 }

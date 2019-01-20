@@ -1,15 +1,33 @@
 import * as Koa from 'koa';
 const fp = require('find-free-port');
+import { importSchema } from 'graphql-import';
+import { makeExecutableSchema } from 'graphql-tools';
+const path = require('path');
 
+import { allResolvers } from './resolvers';
+
+const { ApolloServer, gql } = require('apollo-server-koa');
+
+const typeDefs = importSchema(path.join(__dirname, `./schemas/schema.graphql`));
+
+const resolvers = {
+  Query: {
+    ...allResolvers.Query,
+  },
+  Mutation: {
+    ...allResolvers.Mutation,
+  },
+};
+
+const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+const server = new ApolloServer({ typeDefs, resolvers });
 const app = new Koa();
 
-app.use(async ctx => {
-  ctx.body = 'Hello World';
-});
+server.applyMiddleware({ app });
 
 fp(4000)
   .then(([port]) => {
-    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === 'production') {
       port = 3000;
     }
