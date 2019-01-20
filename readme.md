@@ -7,6 +7,7 @@
 - [Oh-My-Zsh 操作 Git 的快捷键](https://segmentfault.com/a/1190000007145316)
 - [node 怎么判断是开发环境还是生产环境？？](https://segmentfault.com/q/1010000007782377/a-1020000007782650)
 - [cross-env](https://www.npmjs.com/package/cross-env)
+- [mongoose 学习笔记（超详细）](https://segmentfault.com/a/1190000010688972#articleHeader14)
 
 ## 项目搭建流程
 
@@ -17,11 +18,11 @@
 - [x] 使用 `.graphql` 文件 支持语法高亮
 - [x] `npm run build` `.graphql` 文件处理
 - [x] `.graphql` 单文件涵盖所有的 类型
+- [x] 接入 `mongodb`
 - [ ] relationship
 - [ ] 指令
 - [ ] 内联片段
 - [ ] 元字段
-- [ ] 接入 `mongodb`
 - [ ] 分页
 - [ ] `dataloader`
 - [ ] `auth`
@@ -53,3 +54,8 @@ mutation
 
 ** 添加多个 schema **
 ![](./imgs/10.png)
+
+# docker 启动 mongo 容器
+
+- docker-compose up -d
+- docker ps

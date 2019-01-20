@@ -19,11 +19,13 @@
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.3",
     "koa": "^2.6.2",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.5"
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",
     "@types/lodash": "^4.14.120",
+    "@types/mongoose": "^5.3.8",
     "nodemon": "^1.18.9",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.4"
