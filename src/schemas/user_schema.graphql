@@ -1,5 +1,5 @@
 type Query {
-  user(_id: Int): User
+  user(_id: ID!): User
   users: [User]!
 }
 

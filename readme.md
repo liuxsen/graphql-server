@@ -19,6 +19,7 @@
 - [x] `npm run build` `.graphql` 文件处理
 - [x] `.graphql` 单文件涵盖所有的 类型
 - [x] 接入 `mongodb`
+- [x] `mongodb model` 模型添加类型 typeof
 - [ ] relationship
 - [ ] 指令
 - [ ] 内联片段
@@ -59,3 +60,47 @@ mutation
 
 - docker-compose up -d
 - docker ps
+
+# 连接 mongo
+
+## 查询
+
+```graphql
+# Write your query or mutation here
+query {
+  user(_id: "5c44396542389ec9c640dd7b") {
+    name
+    age
+    _id
+  }
+  users {
+    name
+    age
+    _id
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "user": {
+      "name": "update_user_name",
+      "age": 244,
+      "_id": "5c44396542389ec9c640dd7b"
+    },
+    "users": [
+      {
+        "name": "update_user_name",
+        "age": 244,
+        "_id": "5c44396542389ec9c640dd7b"
+      },
+      {
+        "name": "赵柳",
+        "age": 23,
+        "_id": "5c443b3740bda6ca3ccd4efd"
+      }
+    ]
+  }
+}
+```
