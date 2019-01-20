@@ -1,32 +1,22 @@
 import * as _ from 'lodash';
 import { UserModel } from '../db/schemas';
-const users = [
-  {
-    id: 1,
-    name: '张三',
-    age: 23,
-  },
-  {
-    id: 2,
-    name: '李四',
-    age: 35,
-  },
-];
+type TypeUserModel = typeof UserModel;
 
 export default {
   Query: {
-    async user(parent, { id }) {
-      return _.find(users, { id });
+    async user(parent, { _id }, context) {
+      const UserModel: TypeUserModel = context.UserModel;
+      return await UserModel.findById(_id);
     },
-    users() {
-      return users;
+    async users(parent, { _id }, context) {
+      const UserModel: TypeUserModel = context.UserModel;
+      return await UserModel.find({});
     },
   },
   Mutation: {
     async addUser(parent, { userInput }, context) {
-      const User = new context.UserModel(userInput);
-      await User.save();
-      return User.transform();
+      const UserModel: TypeUserModel = context.UserModel;
+      return await UserModel.create(userInput);
     },
     async deleteUser(parent, { _id }, context) {
       return await context.UserModel.findByIdAndDelete(_id);
