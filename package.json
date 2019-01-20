@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",
-    "compile": "rm -rf build/* && tsc",
+    "compile": "rm -rf dist/* && ./build/prod.sh && tsc",
     "build": "npm run compile",
     "start": "npm run build && cross-env NODE_ENV=production node dist/main.js"
   },
