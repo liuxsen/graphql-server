@@ -14,10 +14,10 @@ const users = [
 
 export default {
   Query: {
-    async user(parent, { id }) {
+    user(parent, { id }) {
       return _.find(users, { id });
     },
-    async users() {
+    users() {
       return users;
     },
   },

@@ -1,0 +1,19 @@
+type Query {
+  shop(id: Int!): Shop
+}
+
+type Shop {
+  id: ID!
+  name: String
+  authorId: Int
+}
+
+input ShopInput {
+  id: Int
+  name: String
+  authorId: Int!
+}
+
+type Mutation {
+  addShop(shopInput: ShopInput!): Shop
+}
