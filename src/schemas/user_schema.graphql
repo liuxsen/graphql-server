@@ -1,27 +1,33 @@
 type Query {
-  user(id: Int): User
+  user(_id: Int): User
   users: [User]!
 }
 
 type Mutation {
   addUser(userInput: UserInput!): User
-  deleteUser(id: Int!): User
+  deleteUser(_id: ID!): User
   updateUser(updateUserInput: UserupdateInput!): User
 }
 
+# 用户模型
 type User {
-  id: ID!
+  _id: ID!
+  # 账号
   name: String!
+  # 密码
+  pwd: String!
   age: Int
 }
 
 input UserInput {
   name: String
+  pwd: String
   age: Int
 }
 
 input UserupdateInput {
-  id: Int!
+  _id: ID!
+  pwd: String
   name: String
   age: Int
 }

@@ -3,6 +3,8 @@ const fp = require('find-free-port');
 import { importSchema } from 'graphql-import';
 import { makeExecutableSchema } from 'graphql-tools';
 const path = require('path');
+const mongoose = require('./db/connect');
+import * as Model from './db/schemas';
 
 import { allResolvers } from './resolvers';
 
@@ -21,7 +23,18 @@ const resolvers = {
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  schema,
+  formatError(error) {
+    delete error.extensions.exception;
+    return error;
+  },
+  async context({ req, h }) {
+    return {
+      ...Model,
+    };
+  },
+});
 const app = new Koa();
 
 server.applyMiddleware({ app });

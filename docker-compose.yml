@@ -3,6 +3,6 @@ services:
   z:
     tty: true
     image: mongo
-    container_name: 'mongo'
+    container_name: 'gql_mongo'
     ports:
       - '27017:27017'

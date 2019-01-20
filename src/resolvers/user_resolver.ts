@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import { UserModel } from '../db/schemas';
 const users = [
   {
     id: 1,
@@ -14,7 +15,7 @@ const users = [
 
 export default {
   Query: {
-    user(parent, { id }) {
+    async user(parent, { id }) {
       return _.find(users, { id });
     },
     users() {
@@ -22,20 +23,24 @@ export default {
     },
   },
   Mutation: {
-    addUser(parent, { userInput }) {
-      userInput.id = users.length;
-      users[users.length] = userInput;
-      return userInput;
+    async addUser(parent, { userInput }, context) {
+      const User = new context.UserModel(userInput);
+      await User.save();
+      return User.transform();
     },
-    deleteUser(parent, { id }) {
-      const user = _.find(users, { id });
-      _.remove(users, { id });
-      return user;
+    async deleteUser(parent, { _id }, context) {
+      return await context.UserModel.findByIdAndDelete(_id);
     },
-    updateUser(parent, { updateUserInput }) {
-      const index = _.findIndex(users, { id: updateUserInput.id });
-      users[index] = updateUserInput;
-      return users[index];
+    async updateUser(parent, { updateUserInput }, context) {
+      const modifiedLength = await context.UserModel.updateOne(
+        { _id: updateUserInput._id },
+        updateUserInput
+      );
+      if (modifiedLength.n) {
+        return updateUserInput;
+      } else {
+        return null;
+      }
     },
   },
 };
