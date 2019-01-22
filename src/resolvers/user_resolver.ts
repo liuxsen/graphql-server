@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { UserModel } from '../db/schemas';
+import { UserModel, ShopModel } from '../db/schemas';
 type TypeUserModel = typeof UserModel;
 
 export default {
@@ -31,6 +31,11 @@ export default {
       } else {
         return null;
       }
+    },
+  },
+  User: {
+    async shops(user: { _id: String }) {
+      return await ShopModel.find({ ownerId: user._id });
     },
   },
 };

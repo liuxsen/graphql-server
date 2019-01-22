@@ -20,6 +20,7 @@
 - [x] `.graphql` 单文件涵盖所有的 类型
 - [x] 接入 `mongodb`
 - [x] `mongodb model` 模型添加类型 typeof
+- [ ] 查看 `graphql性能`
 - [ ] relationship
 - [ ] 指令
 - [ ] 内联片段
