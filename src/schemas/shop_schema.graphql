@@ -1,17 +1,24 @@
+# import User from './user_schema.graphql';
+
 type Query {
-  shop(id: Int!): Shop
+  shop(id: ID!): Shop
+  shops: [Shop]!
 }
 
 type Shop {
   id: ID!
+  # 店铺名字
   name: String
-  authorId: Int
+  # 所有者id
+  ownerId: ID!
+  # 所有者
+  owner: User
 }
 
 input ShopInput {
   id: Int
   name: String
-  authorId: Int!
+  ownerId: ID!
 }
 
 type Mutation {

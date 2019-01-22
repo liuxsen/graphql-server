@@ -1,3 +1,5 @@
+# import Shop from './shop_schema.graphql';
+
 type Query {
   user(_id: ID!): User
   users: [User]!
@@ -17,6 +19,7 @@ type User {
   # 密码
   pwd: String!
   age: Int
+  shops: [Shop]!
 }
 
 input UserInput {

@@ -1,29 +1,28 @@
 import * as _ from 'lodash';
-const shops = [
-  {
-    id: 1,
-    name: 'shop-1',
-    authorId: 1,
-  },
-  {
-    id: 2,
-    name: 'shop-2',
-    authorId: 1,
-  },
-];
+import { ShopModel, UserModel } from '../db/schemas';
+
+type ShopModelType = typeof ShopModel;
 
 export default {
   Query: {
-    shop(parent, { id }) {
-      return _.find(shops, { id });
+    async shop(parent, { id }, context) {
+      const ShopModel: ShopModelType = context.ShopModel;
+      return await ShopModel.findById(id);
+    },
+    async shops(parent, {}, context) {
+      const ShopModel: ShopModelType = context.ShopModel;
+      return ShopModel.find({});
     },
   },
   Mutation: {
-    addShop(parent, { shopInput }) {
-      console.log(shopInput);
-      shopInput.id = shops.length;
-      shops[shops.length] = shopInput;
-      return shopInput;
+    async addShop(parent, { shopInput }, context) {
+      const ShopModel: ShopModelType = context.ShopModel;
+      return await ShopModel.create(shopInput);
+    },
+  },
+  Shop: {
+    async owner(shop) {
+      return await UserModel.findById(shop.ownerId);
     },
   },
 };
