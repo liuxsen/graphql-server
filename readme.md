@@ -20,10 +20,12 @@
 - [x] `.graphql` 单文件涵盖所有的 类型
 - [x] 接入 `mongodb`
 - [x] `mongodb model` 模型添加类型 typeof
-- [ ] 查看 `graphql性能`
-- [ ] relationship
+- [x] 查看 `graphql性能`
+- [x] relationship
+- [x] [graphql 单文件注释](https://github.com/prisma/graphql-import/issues/49)
 - [ ] 指令
-- [ ] 内联片段
+- [x] 内联片段
+- [ ] 在内联片段中使用变量
 - [ ] 元字段
 - [ ] 分页
 - [ ] `dataloader`
@@ -105,3 +107,55 @@ query {
   }
 }
 ```
+
+### 查询片段 fragmentUser
+
+```graphql
+query getUserInfo {
+  userInfo: user(_id: "5c44396542389ec9c640dd7b") {
+    ...fragmentUser
+  }
+
+  users {
+    name
+    age
+    _id
+  }
+}
+
+fragment fragmentUser on User {
+  name
+}
+```
+
+### 指令 directives
+
+```graphql
+# Write your query or mutation here
+query getUserInfo($showShops: Boolean!, $showName: Boolean!) {
+  userInfo: user(_id: "5c44396542389ec9c640dd7b") {
+    ...fragmentUser
+    shops @include(if: $showShops) {
+      name @skip(if: $showName)
+      ownerId
+      owner {
+        name
+        _id
+      }
+    }
+  }
+  users {
+    name
+    age
+    _id
+  }
+}
+
+fragment fragmentUser on User {
+  name
+}
+```
+
+### 删除无用的 docker 镜像
+
+- docker system prune -a --force

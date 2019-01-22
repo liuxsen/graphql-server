@@ -11,7 +11,7 @@ import { allResolvers } from './resolvers';
 const { ApolloServer, gql } = require('apollo-server-koa');
 
 const typeDefs = importSchema(path.join(__dirname, `./schemas/schema.graphql`));
-
+console.log(typeDefs);
 const resolvers = allResolvers;
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
@@ -23,10 +23,10 @@ const server = new ApolloServer({
     return error;
   },
   async context({ req, h }) {
-    return {
-      ...Model,
-    };
+    return Model;
   },
+  // 打开性能分析
+  tracing: true,
 });
 const app = new Koa();
 

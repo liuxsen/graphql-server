@@ -1,24 +1,48 @@
 # import Shop from './shop_schema.graphql';
 
 type Query {
+  """
+  用户
+  """
   user(_id: ID!): User
   users: [User]!
 }
 
 type Mutation {
+  """
+  添加用户
+  """
   addUser(userInput: UserInput!): User
+  """
+  删除用户
+  """
   deleteUser(_id: ID!): User
+  """
+  更新用户信息
+  """
   updateUser(updateUserInput: UserupdateInput!): User
 }
 
-# 用户模型
+"""
+用户模型
+"""
 type User {
   _id: ID!
-  # 账号
+  """
+  账号
+  """
   name: String!
-  # 密码
+  """
+  密码
+  """
   pwd: String!
+  """
+  年龄
+  """
   age: Int
+  """
+  店铺列表
+  """
   shops: [Shop]!
 }
 

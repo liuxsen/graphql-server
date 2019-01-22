@@ -1,12 +1,13 @@
 # import User from './user_schema.graphql';
 
 type Query {
+  # 查询店铺
   shop(id: ID!): Shop
   shops: [Shop]!
 }
 
 type Shop {
-  id: ID!
+  _id: ID!
   # 店铺名字
   name: String
   # 所有者id
