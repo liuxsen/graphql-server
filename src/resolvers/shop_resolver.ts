@@ -13,11 +13,11 @@ export default {
       console.log(page_limit, page_no);
       const ShopModel: ShopModelType = context.ShopModel;
       // return ShopModel.find({});
-      const skip = page_no * (page_limit - 1);
+      const skip = page_limit * (page_no - 1);
       const rows = await ShopModel.find({})
         .limit(page_limit)
         .skip(skip);
-      const total_items = await ShopModel.count({});
+      const total_items = await ShopModel.countDocuments({});
       console.log(rows, total_items);
       return {
         page_limit,

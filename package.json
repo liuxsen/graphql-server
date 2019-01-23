@@ -14,6 +14,7 @@
   "dependencies": {
     "apollo-server-koa": "^2.3.1",
     "cross-env": "^5.2.0",
+    "dataloader": "^1.4.0",
     "find-free-port": "^2.0.0",
     "graphql": "^14.1.1",
     "graphql-import": "^0.7.1",

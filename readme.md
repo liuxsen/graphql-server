@@ -8,6 +8,7 @@
 - [node 怎么判断是开发环境还是生产环境？？](https://segmentfault.com/q/1010000007782377/a-1020000007782650)
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [mongoose 学习笔记（超详细）](https://segmentfault.com/a/1190000010688972#articleHeader14)
+- [dataloader](https://www.npmjs.com/package/dataloader)
 
 ## 项目搭建流程
 
@@ -28,8 +29,11 @@
 - [ ] 在内联片段中使用变量
 - [ ] 元字段
 - [x] 分页
-- [ ] `dataloader`
+- [x] `dataloader`
 - [ ] `auth`
+- [ ] 文件上传
+- [ ] 项目 日志
+- [ ] subscription
 
 ## Useage
 

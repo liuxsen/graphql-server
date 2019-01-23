@@ -1,6 +1,16 @@
 import * as _ from 'lodash';
 import { UserModel, ShopModel } from '../db/schemas';
+import { shopLoader } from './dataLoader';
+
 type TypeUserModel = typeof UserModel;
+
+const getUsers = function(ids): any {
+  return new Promise((resolve, reject) => {
+    console.log('执行loader');
+    console.log(ids);
+    resolve(ids);
+  });
+};
 
 export default {
   Query: {
@@ -35,7 +45,7 @@ export default {
   },
   User: {
     async shops(user: { _id: String }) {
-      return await ShopModel.find({ ownerId: user._id });
+      return await shopLoader.load(user._id);
     },
   },
 };
