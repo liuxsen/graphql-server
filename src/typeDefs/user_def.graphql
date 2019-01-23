@@ -1,4 +1,4 @@
-# import Shop from './shop_schema.graphql';
+# import Shop from './shop_def.graphql';
 
 type Query {
   """

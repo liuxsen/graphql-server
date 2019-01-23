@@ -1,4 +1,4 @@
-# import User from './user_schema.graphql';
+# import User from './user_def.graphql';
 # import PageInfo from './common.graphql';
 
 type Query {
