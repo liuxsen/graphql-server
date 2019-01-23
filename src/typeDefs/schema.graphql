@@ -1,0 +1,3 @@
+# import Query.*, Mutation.* from './user_def.graphql'
+# import Query.*, Mutation.* from './shop_def.graphql'
+

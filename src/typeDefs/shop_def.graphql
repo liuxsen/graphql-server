@@ -1,9 +1,17 @@
-# import User from './user_schema.graphql';
+# import User from './user_def.graphql';
+# import PageInfo from './common.graphql';
 
 type Query {
   # 查询店铺
   shop(id: ID!): Shop
-  shops: [Shop]!
+  shops(page_no: Int!, page_limit: Int): ShopPagination
+}
+
+type ShopPagination implements PageInfo {
+  rows: [Shop]!
+  total_items: Int!
+  page_no: Int!
+  page_limit: Int!
 }
 
 type Shop {

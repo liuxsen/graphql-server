@@ -10,8 +10,9 @@ import { allResolvers } from './resolvers';
 
 const { ApolloServer, gql } = require('apollo-server-koa');
 
-const typeDefs = importSchema(path.join(__dirname, `./schemas/schema.graphql`));
-console.log(typeDefs);
+const typeDefs = importSchema(
+  path.join(__dirname, `./typeDefs/schema.graphql`)
+);
 const resolvers = allResolvers;
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });

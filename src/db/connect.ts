@@ -27,6 +27,8 @@ mongoose.connection.on('disconnected', function() {
   console.log('Mongoose connection disconnected');
 });
 
+mongoose.set('debug', true);
+
 export default mongoose;
 export const Schema = mongoose.Schema;
 export const Model = mongoose.model;

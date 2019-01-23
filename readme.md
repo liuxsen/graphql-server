@@ -8,6 +8,7 @@
 - [node 怎么判断是开发环境还是生产环境？？](https://segmentfault.com/q/1010000007782377/a-1020000007782650)
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [mongoose 学习笔记（超详细）](https://segmentfault.com/a/1190000010688972#articleHeader14)
+- [dataloader](https://www.npmjs.com/package/dataloader)
 
 ## 项目搭建流程
 
@@ -27,9 +28,12 @@
 - [x] 内联片段
 - [ ] 在内联片段中使用变量
 - [ ] 元字段
-- [ ] 分页
-- [ ] `dataloader`
+- [x] 分页
+- [x] `dataloader`
 - [ ] `auth`
+- [ ] 文件上传
+- [ ] 项目 日志
+- [ ] subscription
 
 ## Useage
 
@@ -153,6 +157,25 @@ query getUserInfo($showShops: Boolean!, $showName: Boolean!) {
 
 fragment fragmentUser on User {
   name
+}
+```
+
+## 分页
+
+```graphql
+query {
+  shops(page_no: 1, page_limit: 1) {
+    total_items
+    page_no
+    page_limit
+    rows {
+      name
+      ownerId
+      owner {
+        name
+      }
+    }
+  }
 }
 ```
 

@@ -1,5 +1,7 @@
 import * as _ from 'lodash';
 import { UserModel, ShopModel } from '../db/schemas';
+import { shopLoader } from './dataLoader';
+
 type TypeUserModel = typeof UserModel;
 
 export default {
@@ -35,7 +37,7 @@ export default {
   },
   User: {
     async shops(user: { _id: String }) {
-      return await ShopModel.find({ ownerId: user._id });
+      return await shopLoader.load(user._id);
     },
   },
 };

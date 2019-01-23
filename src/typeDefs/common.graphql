@@ -1,0 +1,14 @@
+interface PageInfo {
+  """
+  总共有多少条数据
+  """
+  total_items: Int!
+  """
+  当前页码
+  """
+  page_no: Int!
+  """
+  分页大小
+  """
+  page_limit: Int!
+}
