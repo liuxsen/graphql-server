@@ -9,9 +9,22 @@ export default {
       const ShopModel: ShopModelType = context.ShopModel;
       return await ShopModel.findById(id);
     },
-    async shops(parent, {}, context) {
+    async shops(parent, { page_no, page_limit }, context) {
+      console.log(page_limit, page_no);
       const ShopModel: ShopModelType = context.ShopModel;
-      return ShopModel.find({});
+      // return ShopModel.find({});
+      const skip = page_no * (page_limit - 1);
+      const rows = await ShopModel.find({})
+        .limit(page_limit)
+        .skip(skip);
+      const total_items = await ShopModel.count({});
+      console.log(rows, total_items);
+      return {
+        page_limit,
+        page_no,
+        total_items,
+        rows,
+      };
     },
   },
   Mutation: {

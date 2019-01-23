@@ -156,6 +156,25 @@ fragment fragmentUser on User {
 }
 ```
 
+## 分页
+
+```graphql
+query {
+  shops(page_no: 1, page_limit: 1) {
+    total_items
+    page_no
+    page_limit
+    rows {
+      name
+      ownerId
+      owner {
+        name
+      }
+    }
+  }
+}
+```
+
 ### 删除无用的 docker 镜像
 
 - docker system prune -a --force
