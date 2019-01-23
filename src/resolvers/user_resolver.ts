@@ -4,14 +4,6 @@ import { shopLoader } from './dataLoader';
 
 type TypeUserModel = typeof UserModel;
 
-const getUsers = function(ids): any {
-  return new Promise((resolve, reject) => {
-    console.log('执行loader');
-    console.log(ids);
-    resolve(ids);
-  });
-};
-
 export default {
   Query: {
     async user(parent, { _id }, context) {
