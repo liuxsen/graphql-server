@@ -9,13 +9,23 @@ import * as Model from './db/schemas';
 import { allResolvers } from './resolvers';
 
 const { ApolloServer, gql } = require('apollo-server-koa');
+// 加载指令
+import { UpperCaseDirective } from './directives';
 
 const typeDefs = importSchema(
   path.join(__dirname, `./typeDefs/schema.graphql`)
 );
+console.log(typeDefs);
 const resolvers = allResolvers;
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+  // 將 schema 的 directive 與實作連接並傳進 ApolloServer。
+  schemaDirectives: {
+    upper: UpperCaseDirective as any,
+  },
+});
 
 const server = new ApolloServer({
   schema,
@@ -23,6 +33,7 @@ const server = new ApolloServer({
     delete error.extensions.exception;
     return error;
   },
+
   async context({ req, h }) {
     return Model;
   },

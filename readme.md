@@ -9,6 +9,8 @@
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [mongoose 学习笔记（超详细）](https://segmentfault.com/a/1190000010688972#articleHeader14)
 - [dataloader](https://www.npmjs.com/package/dataloader)
+- [shell 脚本中的"2< " ">&2" "&>"](https://linux.cn/article-3464-1.html)
+- [GraphQL 安全指北](https://www.freebuf.com/articles/web/184040.html)
 
 ## 项目搭建流程
 
@@ -24,13 +26,15 @@
 - [x] 查看 `graphql性能`
 - [x] relationship
 - [x] [graphql 单文件注释](https://github.com/prisma/graphql-import/issues/49)
-- [ ] 指令
+- [x] `dataloader`
 - [x] 内联片段
+- [x] `auth` 授权
+- [ ] `auth` 鉴权 server side schema difinition + Directives
+- [x] 分页
+- [ ] [指令](https://ithelp.ithome.com.tw/articles/10206667?sc=iThelpR)
 - [ ] 在内联片段中使用变量
 - [ ] 元字段
-- [x] 分页
-- [x] `dataloader`
-- [ ] `auth`
+- [ ] `enum` 枚举
 - [ ] 文件上传
 - [ ] 项目 日志
 - [ ] subscription
@@ -160,6 +164,23 @@ fragment fragmentUser on User {
 }
 ```
 
+```graphql
+# 修改
+mutation($userInput: UserInput!){
+  addUser(userInput: $userInput) {
+    name
+  }
+}
+# 变量
+{
+  "userInput": {
+    "name": "测试",
+    "pwd": "密码----",
+    "age": 123123
+  }
+}
+```
+
 ## 分页
 
 ```graphql
@@ -177,6 +198,12 @@ query {
     }
   }
 }
+```
+
+## 指令
+
+```graphql
+age: Int @deprecated(reason: "it's secret")
 ```
 
 ### 删除无用的 docker 镜像

@@ -1,6 +1,5 @@
 # import User from './user_def.graphql';
 # import PageInfo from './common.graphql';
-
 type Query {
   # 查询店铺
   shop(id: ID!): Shop

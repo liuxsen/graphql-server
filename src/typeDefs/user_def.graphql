@@ -4,23 +4,21 @@ type Query {
   """
   用户
   """
+  hello: String @upper
   user(_id: ID!): User
   users: [User]!
 }
 
 type Mutation {
-  """
-  添加用户
-  """
-  addUser(userInput: UserInput!): User
-  """
-  删除用户
-  """
+  login(name: String!, pwd: String!): LoginMsg
+  addUser(userInput: UserInput!): LoginMsg
   deleteUser(_id: ID!): User
-  """
-  更新用户信息
-  """
   updateUser(updateUserInput: UserupdateInput!): User
+}
+
+type LoginMsg {
+  token: String
+  message: String
 }
 
 """
@@ -31,7 +29,7 @@ type User {
   """
   账号
   """
-  name: String!
+  name: String! @upper
   """
   密码
   """
@@ -39,7 +37,7 @@ type User {
   """
   年龄
   """
-  age: Int
+  age: Int @deprecated(reason: "it's secret")
   """
   店铺列表
   """

@@ -1,5 +1,6 @@
 // 店铺模型
 import { Schema } from '../connect';
+import { Model } from '../connect';
 
 export const ShopSchema = new Schema({
   name: { type: String },
@@ -8,3 +9,5 @@ export const ShopSchema = new Schema({
   storePhone: { type: String }, // 店铺电话
   isHead: { type: Boolean }, // 是否总店
 });
+
+export let ShopModel = Model('Shop', ShopSchema);

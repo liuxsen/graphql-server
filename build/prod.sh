@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo 'copy schemas ...'
-cp -r ./src/schemas ./dist/schemas
+echo 'copy typeDefs ...'
+cp -r ./src/typeDefs ./dist/typeDefs
 echo 'copy success.'
