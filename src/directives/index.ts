@@ -1,3 +1,4 @@
 import { UpperCaseDirective } from './upperCase';
+import { AuthDirective, AdminDirective } from './auth';
 
-export { UpperCaseDirective };
+export { UpperCaseDirective, AuthDirective, AdminDirective };
