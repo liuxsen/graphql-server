@@ -15,18 +15,18 @@ type ShopPagination implements PageInfo {
 
 type Shop {
   _id: ID!
-  # 店铺名字
   name: String
-  # 所有者id
+  address: String
+  isHead: Boolean
+  avatar: String
+  storePhone: String
   ownerId: ID!
-  # 所有者
   owner: User
 }
 
 input ShopInput {
   id: Int
   name: String
-  ownerId: ID!
 }
 
 type Mutation {

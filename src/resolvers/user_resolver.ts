@@ -9,15 +9,12 @@ type TypeUserModel = typeof UserModel;
 
 export default {
   Query: {
-    async hello() {
-      return 'hello';
-    },
     async user(parent, { _id }, context) {
-      const UserModel: TypeUserModel = context.UserModel;
+      const UserModel: TypeUserModel = context.db.UserModel;
       return await UserModel.findById(_id);
     },
     async users(parent, { _id }, context) {
-      const UserModel: TypeUserModel = context.UserModel;
+      const UserModel: TypeUserModel = context.db.UserModel;
       return await UserModel.find({});
     },
   },
@@ -42,7 +39,7 @@ export default {
       }
     },
     async addUser(parent, { userInput }: { userInput: any }, context) {
-      const UserModel: TypeUserModel = context.UserModel;
+      const UserModel: TypeUserModel = context.db.UserModel;
       // 账户唯一
       const dbUser = await UserModel.findOne({ name: userInput.name });
       if (dbUser) {
@@ -64,10 +61,10 @@ export default {
       };
     },
     async deleteUser(parent, { _id }, context) {
-      return await context.UserModel.findByIdAndDelete(_id);
+      return await context.db.UserModel.findByIdAndDelete(_id);
     },
     async updateUser(parent, { updateUserInput }, context) {
-      const modifiedLength = await context.UserModel.updateOne(
+      const modifiedLength = await context.db.UserModel.updateOne(
         { _id: updateUserInput._id },
         updateUserInput
       );

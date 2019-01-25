@@ -1,3 +1,6 @@
 # import Query.*, Mutation.* from './user_def.graphql'
 # import Query.*, Mutation.* from './shop_def.graphql'
+
 directive @upper on FIELD_DEFINITION
+directive @auth on FIELD_DEFINITION
+directive @admin on FIELD_DEFINITION

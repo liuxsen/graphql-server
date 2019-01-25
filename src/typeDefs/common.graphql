@@ -12,3 +12,10 @@ interface PageInfo {
   """
   page_limit: Int!
 }
+
+enum UserType {
+  "管理员"
+  admin
+  "商家"
+  busiuness
+}

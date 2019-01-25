@@ -1,12 +1,12 @@
 # import Shop from './shop_def.graphql';
-
+# import UserType from './common.graphql';
 type Query {
   """
   用户
   """
   hello: String @upper
-  user(_id: ID!): User
-  users: [User]!
+  user(_id: ID!): User @auth
+  users: [User]! @auth @admin
 }
 
 type Mutation {
@@ -26,28 +26,18 @@ type LoginMsg {
 """
 type User {
   _id: ID!
-  """
-  账号
-  """
   name: String! @upper
-  """
-  密码
-  """
   pwd: String!
-  """
-  年龄
-  """
   age: Int @deprecated(reason: "it's secret")
-  """
-  店铺列表
-  """
   shops: [Shop]!
+  type: UserType
 }
 
 input UserInput {
   name: String
   pwd: String
   age: Int
+  type: UserType!
 }
 
 input UserupdateInput {

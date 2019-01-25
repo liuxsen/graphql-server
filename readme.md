@@ -38,6 +38,7 @@
 - [ ] 文件上传
 - [ ] 项目 日志
 - [ ] subscription
+- [ ] mocha 单元测试
 
 ## Useage
 
