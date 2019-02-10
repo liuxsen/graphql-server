@@ -21,6 +21,7 @@ export default {
   Mutation: {
     async login(parent, { name, pwd }: { name: string; pwd: string }, context) {
       const user: any = await UserModel.findOne({ name });
+      if (!user) throw new context.Forbidden('不是合法用户');
       // 对比密码 pwd 用户密码  user.pwd 数据库密码
       const isEqualPwd = bcrypt.compareSync(pwd, user.pwd);
       if (isEqualPwd) {
@@ -32,10 +33,7 @@ export default {
           message: 'login successfully',
         };
       } else {
-        return {
-          token: '',
-          message: 'pwd is invalide',
-        };
+        throw new context.Forbidden('pwd is invalide');
       }
     },
     async addUser(parent, { userInput }: { userInput: any }, context) {
@@ -43,10 +41,7 @@ export default {
       // 账户唯一
       const dbUser = await UserModel.findOne({ name: userInput.name });
       if (dbUser) {
-        return {
-          token: '',
-          message: 'already has this username',
-        };
+        throw new context.Forbidden('already has this username');
       }
       const salt = bcrypt.genSaltSync(10);
       const newPwd = bcrypt.hashSync(userInput.pwd, salt);

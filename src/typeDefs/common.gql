@@ -7,14 +7,12 @@ interface PageInfo {
   当前页码
   """
   page_no: Int!
-  """
-  分页大小
-  """
+  #  limit
   page_limit: Int!
 }
 
 enum UserType {
-  "管理员"
+  # "管理员"
   admin
   "商家"
   busiuness

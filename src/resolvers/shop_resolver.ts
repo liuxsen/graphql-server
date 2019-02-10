@@ -11,7 +11,7 @@ export default {
     },
     async shops(parent, { page_no, page_limit }, context) {
       console.log(page_limit, page_no);
-      const ShopModel: ShopModelType = context.ShopModel;
+      const ShopModel: ShopModelType = context.db.ShopModel;
       // return ShopModel.find({});
       const skip = page_limit * (page_no - 1);
       const rows = await ShopModel.find({})

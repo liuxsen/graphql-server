@@ -1,39 +1,13 @@
 import * as Koa from 'koa';
 const fp = require('find-free-port');
-import { importSchema } from 'graphql-import';
-import { makeExecutableSchema } from 'graphql-tools';
+const { ApolloServer, gql, ForbiddenError } = require('apollo-server-koa');
+
 const path = require('path');
 const mongoose = require('./db/connect');
 import * as Model from './db/schemas';
 import { verify } from 'jsonwebtoken';
 import { AuthConfig } from './config';
-
-import { allResolvers } from './resolvers';
-
-const { ApolloServer, gql } = require('apollo-server-koa');
-// 加载指令
-import {
-  UpperCaseDirective,
-  AuthDirective,
-  AdminDirective,
-} from './directives';
-
-const typeDefs = importSchema(
-  path.join(__dirname, `./typeDefs/schema.graphql`)
-);
-console.log(typeDefs);
-const resolvers = allResolvers;
-
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-  // 將 schema 的 directive 與實作連接並傳進 ApolloServer。
-  schemaDirectives: {
-    upper: UpperCaseDirective as any,
-    auth: AuthDirective as any,
-    admin: AdminDirective as any,
-  },
-});
+import schema from './schema';
 
 const server = new ApolloServer({
   schema,
@@ -54,18 +28,9 @@ const server = new ApolloServer({
     return {
       db: Model,
       me,
+      Forbidden: ForbiddenError,
     };
   },
-  // async context({ req, h }) {
-  //   const token = req && req.headers && req.headers.token;
-  //   if (token) {
-  //     const data: any = jwt.verify(token, config.token.secret);
-  //     const user = data.id ? await User.findById(data.id) : null;
-  //     return { user };
-  //   } else {
-  //     return {};
-  //   }
-  // },
   // 打开性能分析
   tracing: true,
 });
